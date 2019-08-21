@@ -5,10 +5,12 @@ function Form({team, addTeam, teamEdit}) {
 
     const [member, setMember] = useState({name:"", email:"", role: ""});
 
-    const handleCh = event => {
+    const handleChange = event => {
+
         const updateMember = {...member, [event.target.name]: event.target.value};
+
         if(teamEdit != null){
-            setMember(teamEdit)
+            setMember(teamEdit);
         }
         else{
             setMember(updateMember);
@@ -26,17 +28,17 @@ function Form({team, addTeam, teamEdit}) {
             <label>
                 name
                 <input type="text" name="name" value={member.name}
-                onChange={handleCh} required />
+                onChange={handleChange} required />
             </label>
             <label>
                 Email
                 <input type="email" name="email" value={member.email}
-                onChange={handleCh}/>
+                onChange={handleChange}/>
             </label>
             <label>
                 Role 
                 <input type="text" name="role" value={member.role}
-                onChange={handleCh}/>
+                onChange={handleChange}/>
             </label>
             <button type="submit">Submit</button>
         </Form>

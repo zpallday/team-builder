@@ -1,35 +1,28 @@
 import React, {useState} from 'react';
 import './App.css';
-import Form from './component/Form';
+import Form from './component/form';
+import Cards from './component/cards';
 
-const  Team = [
-  {name:"Zachary Peasley", email:"zpman95@hotmail.com", role:"Programmer"},
-  {name:"Dave Smith", email:"Dave@google.com", role:"Doctor"},
-  {name:"Mary Loius", email:"Mary@hotmail.com", role:"Nurse"},
-]
+function App() {
+  const [team, setTeams] = useState([])
+  const [teamsEdit, setTeamsEdit] = useState({name:"", email: "", role:""})
 
-const App = () => {
-  const [teams, setTeams] = useState(Team)
-  const removeTeamMembers = (overboardMem) => {
-    const newTeam = teams(member => {
-    if (member.email !== overboardMem.email){
-      return member;
-    }
-  });
-  setTeams(newTeam)
-  
-}
+
+
+
+
   return (
-    
-
     <div className = " App ">
-      <Form addTeamMember = {setTeams} team={teams} />
-      {teams.map((member) => <div className = "member-card">
-        <h1>Name: {member.name} </h1>
-        <p>Email: {member.email}</p>
-        <p>Role: {member.role} </p>
-        <button onClick={() => removeTeamMembers(member)}>
-          Man Down </button>        
+      <Form team = {team} setTeams={setTeams} teamsEdit={teamsEdit}/>
+      {team.map((member, index) => 
+      <div>
+        <Cards
+        key={member.id}
+        name={member.name}
+        email={member.email}
+        role={member.role}
+        />
+        <button onClick={() => setTeamsEdit(member)}> </button>        
         
         </div>)}
 
