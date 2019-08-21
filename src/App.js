@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Form from './Form';
+import Form from './component/Form';
 
 const  Team = [
   {name:"Zachary Peasley", email:"zpman95@hotmail.com", role:"Programmer"},
@@ -12,19 +11,20 @@ const  Team = [
 const App = () => {
   const [teams, setTeams] = useState(Team)
   const removeTeamMembers = (overboardMem) => {
-    const newTeam = team.filter(member => {
+    const newTeam = teams(member => {
     if (member.email !== overboardMem.email){
       return member;
     }
   });
-  updateTeam(newTeam)
+  setTeams(newTeam)
+  
 }
   return (
     
 
     <div className = " App ">
-      <Form addTeamMember = {updateTeam} team={team} />
-      {team.map((member) => <div className = "member-card">
+      <Form addTeamMember = {setTeams} team={teams} />
+      {teams.map((member) => <div className = "member-card">
         <h1>Name: {member.name} </h1>
         <p>Email: {member.email}</p>
         <p>Role: {member.role} </p>
@@ -37,5 +37,6 @@ const App = () => {
 
     </div>
   )
+  
 }
 export default App;
