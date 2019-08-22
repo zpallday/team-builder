@@ -1,21 +1,17 @@
 import React, { useState } from "react";
 
 
-function Form({team, addTeam, teamEdit}) {
+function Form({team, addTeam,}) {
 
     const [member, setMember] = useState({name:"", email:"", role: ""});
 
     const handleChange = event => {
 
         const updateMember = {...member, [event.target.name]: event.target.value};
-
-        if(teamEdit != null){
-            setMember(teamEdit);
-        }
-        else{
-            setMember(updateMember);
-        }
+        setMember(updateMember)
     }
+
+
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -24,7 +20,7 @@ function Form({team, addTeam, teamEdit}) {
     }
 
     return (
-        <Form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <label>
                 name
                 <input type="text" name="name" value={member.name}
@@ -41,7 +37,7 @@ function Form({team, addTeam, teamEdit}) {
                 onChange={handleChange}/>
             </label>
             <button type="submit">Submit</button>
-        </Form>
+        </form>
     );
 }
 

@@ -1,35 +1,87 @@
-import React, {useState} from 'react';
+import  React, { useState } from 'react';
 import './App.css';
-import Form from './component/form';
-import Cards from './component/cards';
+import Form from './component/form.js';
 
-function App() {
-  const [team, setTeams] = useState([])
-  const [teamsEdit, setTeamsEdit] = useState({name:"", email: "", role:""})
+const data = [
+  {
+    name: 'Jeremy Brady',
+    email: 'jeremy.brady702@gmail.com',
+    role: 'TL',
+    id: 1
+},
+{
+    name: 'Benita',
+    email: 'Benita@nomail.com',
+    role: 'student',
+    id: 2
+},
+{
+    name: 'Brad',
+    email: 'Brad@nomail.com',
+    role: 'student',
+    id: 3
+},
+{
+    name: 'Ian',
+    email: 'Ian@nomail.com',
+    role: 'student',
+    id: 4
+},
+{
+    name: 'Julie',
+    email: 'Julie@nomail.com',
+    role: 'student',
+    id: 5
+},
+{
+    name: 'Nick',
+    email: 'Nick@nomail.com',
+    role: 'student',
+    id: 6
+},
+{
+    name: 'Rebecca',
+    email: 'Rebecca@nomail.com',
+    role: 'student',
+    id: 7
+},
+{
+    name: 'Zach',
+    email: 'Zach@nomail.com',
+    role: 'student',
+    id: 8
+}
 
+]
 
+const App = () => {
 
+  const [team, updateTeam] = useState(data);
 
+  const removeTeamMember = (overboardMem) => {
+    const newTeam = team.filter(member => {
+      if (member.email !== overboardMem.email){
+        return member;
+      }
+    });
+    updateTeam(newTeam);
+  }
 
   return (
-    <div className = " App ">
-      <Form team = {team} setTeams={setTeams} teamsEdit={teamsEdit}/>
-      {team.map((member, index) => 
-      <div>
-        <Cards
-        key={member.id}
-        name={member.name}
-        email={member.email}
-        role={member.role}
-        />
-        <button onClick={() => setTeamsEdit(member)}> </button>        
-        
-        </div>)}
 
 
+    <div className = "App">
+      <Form addTeam={updateTeam} team={team}/>
 
-    </div>
-  )
-  
+      {team.map((member) =>  <div className = "member-card">
+                              
+    <h3>Name: {member.name}</h3>
+    <p>Email: {member.email}</p>
+    <p>Role: {member.role}</p>
+    <button onClick={() => removeTeamMember(member)}> Remove </button>
+    </div>)}
+    </div>   
+  );
 }
+
 export default App;
